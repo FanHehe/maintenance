@@ -1,0 +1,9 @@
+FROM centos:latest
+MAINTAINER fanhehe 13889441200@163.com
+RUN echo "====> centos iamges is loaded"
+RUN yum -y update
+RUN yum -y install git
+RUN yum install -y epel-release
+RUN yum install -y nodejs
+RUN npm install -g cnpm n pm2
+CMD ["echo", "build success"]
