@@ -1,0 +1,8 @@
+FROM centos
+MAINTAINER fanhehe "vcrmp3@gmail.com"
+COPY ./MariaDB /etc/yum.repos.d/
+RUN echo http://10.144.7.195:3128/ >> /etc/yum.conf
+RUN yum install -y epel-release initscripts
+RUN yum -y install MariaDB-server MariaDB-client
+CMD service mysql start
+EXPOSE 3306
