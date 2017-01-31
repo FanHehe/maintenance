@@ -9,5 +9,5 @@ RUN git checkout origin/master
 RUN cnpm install
 RUN pwd
 RUN npm run dist
-CMD ["npm", "run deploy"]
+ENTRYPOINT ["npm", "run", "deploy"]
 EXPOSE 5000
