@@ -1,4 +1,5 @@
 # 数据库初始化 from fanhehe.com "vcrmp3@gmail.com"
+## PS: 所有语句 都经过Mysql v5.7.16 from homebrew 测试.
 
 USE mysql;
 
@@ -50,5 +51,8 @@ insert into tbl_user ( username, password, nickname ) values ( "fanhehe", "13889
 ## 插入 `tbl_article` 表
 insert into tbl_article ( author, title, content, type ) values ( "fanhehe", "测试文章", "这是一个很久远的故事", 1);
 
-## 取消tbl_user 表中telephone 的 unique 属性
+## 取消 tbl_user 表中 telephone 的 unique 属性
 alter table `tbl_user` DROP INDEX `telephone`
+## 增加 tbl_user 表中 telephone 的 unique 属性 (telephone 字段不能加引号)
+alter table `tbl_user` ADD UNIQUE (telephone)
+
