@@ -44,24 +44,28 @@ create table if not exists tbl_article (
     `create_time` timestamp default current_timestamp,
     `last_modify_time` timestamp default current_timestamp on update current_timestamp,
     key (`id`),
-    primary key (`author`, `title`),
+    primary key (`id`),
     foreign key (`author`) references tbl_user (`username`)
 );
 
 ### 评论表
-create table if not exists`tbl_article_comments` (
-    `id` int(11) unsigned not null auto_increment,
-    `username` varchar(40) not null,
-    `reply_to` varchar(40) default null,
-    `parent_id` int(11) default null,
-    `create_time` timestamp not null default CURRENT_TIMESTAMP,
-    `content` text not null,
-    primary key (`id`),
+CREATE TABLE if not exists `tbl_article_comments` (
+    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    `username` varchar(40) NOT NULL,
+    `reply_to` varchar(40) DEFAULT NULL,
+    `article_id` int(11) unsigned NOT NULL,
+    `parent_id` int(11) unsigned DEFAULT NULL,
+    `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `content` text NOT NULL,
+    `status` tinyint(1) unsigned zerofill DEFAULT '1',
+    PRIMARY KEY (`id`),
     KEY `FOREIGN` (`username`),
     KEY `reply_to` (`reply_to`),
+    KEY `article_id` (`article_id`),
     CONSTRAINT `tbl_article_comments_ibfk_1` FOREIGN KEY (`username`) REFERENCES `tbl_user` (`username`),
-    CONSTRAINT `tbl_article_comments_ibfk_2` FOREIGN KEY (`reply_to`) REFERENCES `tbl_user` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    CONSTRAINT `tbl_article_comments_ibfk_2` FOREIGN KEY (`reply_to`) REFERENCES `tbl_user` (`username`),
+    CONSTRAINT `tbl_article_comments_ibfk_3` FOREIGN KEY (`article_id`) REFERENCES `tbl_article` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 ## 插入 `tbl_user` 表
 insert into tbl_user ( username, password, nickname ) values ( "fanhehe", "13889441200", "fanhehe" );
