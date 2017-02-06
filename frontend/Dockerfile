@@ -6,6 +6,7 @@ RUN git clone https://github.com/FanHehe/fanhehe.frontend.git  && cd ./fanhehe.f
 WORKDIR /www/fanhehe.frontend
 RUN git fetch
 RUN git checkout origin/master
+RUN git submodule update --init
 RUN cnpm install
 #RUN npm run build
 ENTRYPOINT ["npm", "run", "dev"]

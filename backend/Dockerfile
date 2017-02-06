@@ -6,6 +6,7 @@ RUN git clone https://github.com/FanHehe/fanhehe.backend.git && cd ./fanhehe.bac
 WORKDIR /www/fanhehe.backend
 RUN git fetch
 RUN git checkout origin/master
+RUN git submodule update --init
 RUN cnpm install
 RUN pwd
 RUN npm run dist
