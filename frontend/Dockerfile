@@ -8,6 +8,5 @@ RUN git fetch
 RUN git checkout origin/master
 RUN git submodule update --init
 RUN cnpm install
-#RUN npm run build
-ENTRYPOINT ["npm", "run", "dev"]
+ENTRYPOINT ["npm", "start"]
 EXPOSE 3000
